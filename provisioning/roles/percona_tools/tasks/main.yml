@@ -1,0 +1,7 @@
+---
+- name: install percona tools
+  yum: name={{ item }} state=installed
+  with_items:
+    - "{{ percona_rpm_url }}"
+    - percona-xtrabackup
+    - percona-toolkit
