@@ -1,0 +1,18 @@
+---
+- name: install mysql
+  yum: name={{ item }} state=installed
+  with_items:
+    - "{{ mysql_rpm_url }}"
+    - mysql-community-server
+    - mysql-community-devel
+    - mysql-community-libs
+    - mysql-community-libs-compat
+  tags: mysqld
+
+- name: install mysql-python
+  yum: name=MySQL-python state=installed
+  tags: mysqld
+
+- name: start mysqld
+  service: name=mysqld state=started enabled=true
+  tags: mysqld

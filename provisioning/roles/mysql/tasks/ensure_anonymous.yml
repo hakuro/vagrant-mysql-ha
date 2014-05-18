@@ -1,0 +1,8 @@
+---
+- name: ensure anonymous users are not in the database
+  mysql_user: name='' host={{ item }} state=absent
+              login_user=root login_password={{ password }}
+  with_items:
+    - localhost
+    - "{{ inventory_hostname }}"
+  tags: mysqld

@@ -1,0 +1,13 @@
+---
+- hosts: all
+  sudo: yes
+  user: vagrant
+  roles:
+    - { role: mha }
+
+- hosts: mysql
+  sudo: yes
+  user: vagrant
+  roles:
+    - { role: mysql }
+    

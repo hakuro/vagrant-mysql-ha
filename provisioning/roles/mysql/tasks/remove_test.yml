@@ -1,0 +1,4 @@
+---
+- name: remove the test database
+  mysql_db: name=test state=absent login_user=root login_password={{ password }}
+  tags: mysqld

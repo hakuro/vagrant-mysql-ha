@@ -1,0 +1,11 @@
+[db_master]
+mysql_master
+
+[db_slave]
+mysql_slave1
+mysql_slave2
+
+[mysql:children]
+db_master
+db_slave
+

@@ -1,0 +1,25 @@
+---
+- name: install mha deps
+  yum: name={{ item }} state=installed
+  with_items:
+    - perl-DBD-MySQL
+    - perl-Config-Tiny
+    - perl-Log-Dispatch
+    - perl-Parallel-ForkManager
+  tags: mha_manager
+
+- name: download mha node
+  get_url: url={{ rpm_url }}/{{ node_rpm_file }} dest={{ dest_dir }}
+  tags: mha_node
+
+- name: install mha node
+  yum: name={{ dest_dir }}/{{ node_rpm_file }} state=installed
+  tags: mha_node
+
+- name: download mha manager
+  get_url: url={{ rpm_url }}/{{ manager_rpm_file }} dest={{ dest_dir }}
+  tags: mha_manager
+
+- name: install mha manager
+  yum: name={{ dest_dir }}/{{ manager_rpm_file }} state=installed
+  tags: mha_manager
